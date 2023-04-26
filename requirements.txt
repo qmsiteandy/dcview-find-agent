@@ -1,0 +1,4 @@
+pandas
+BeautifulSoup
+requests
+apscheduler
