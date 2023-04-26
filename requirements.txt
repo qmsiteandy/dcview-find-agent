@@ -1,4 +1,3 @@
 pandas
-BeautifulSoup
+beautifulsoup4
 requests
-apscheduler
