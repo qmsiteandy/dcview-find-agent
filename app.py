@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 mode = '售'
-target_names = ['55 1.8']
+target_names = ['35 1.4', '5d4']
 budget = 50000
 locations = ['台北市', '新北市', '高雄市']
 
@@ -23,7 +23,6 @@ def ScheduleJob():
         products_df, mode, target_names, budget, locations)
     # 如果有符合的商品，建立訊息並傳送至 Line Notifiy
     if (find_df.shape[0] > 0):
-        print(find_df)
         for index, row in find_df.iterrows():
             msg = f"【{row['mode']}】 {row['location']} \n\n {row['name']} \n\n {row['price']}元 \n\n -----------\n{row['href']}"
             fn.SendLineMsg(os.getenv("LINE_NOTYFY_TOKEN"), msg)
@@ -31,7 +30,8 @@ def ScheduleJob():
         print('無符合條件商品')
 
 
-schedule.every().second.do(ScheduleJob)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+ScheduleJob()
+# schedule.every().second.do(ScheduleJob)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
