@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import re
 
 
 def GrabDCview():
@@ -55,7 +54,7 @@ def FindProduct(df, mode, target_names, budget, locations):
               location in @locations",
              inplace=True)
 
-    # 將每一項 target 轉為 regex， regex 功能偵測擁有所有關鍵字的項目(關鍵字順序不限)
+    # 將每一項 target 轉為 regex，regex 功能偵測擁有所有關鍵字的項目(關鍵字順序不限)
     # ->  /(?=.*Apple)(?=.*Bat)(?=.*Car).*/
     target_regex = []
     for target in target_names:

@@ -6,9 +6,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# 售 or 徵
 mode = '售'
+# 想要的商品關鍵字，可以同時搜尋多項商品，同一商品若有多項關鍵字可用空白區隔
 target_names = ['35 1.4', '5d4']
+# 預算上限
 budget = 50000
+# 可以的交易區域
 locations = ['台北市', '新北市', '高雄市']
 
 
@@ -30,8 +34,8 @@ def ScheduleJob():
         print('無符合條件商品')
 
 
-ScheduleJob()
-# schedule.every().second.do(ScheduleJob)
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+# 設定定期執行時間
+schedule.every().hour.at(":00").do(ScheduleJob)
+while True:
+    schedule.run_pending()
+    time.sleep(10)
