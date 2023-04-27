@@ -22,6 +22,7 @@ def ScheduleJob():
 
     # 取得產品資訊
     products_df = fn.GrabDCview()
+    print(products_df)
     # filt 符合條件商品
     find_df = fn.FindProduct(
         products_df, mode, target_names, budget, locations)
