@@ -23,7 +23,7 @@ def GrabDCview():
     df = pd.DataFrame(columns=column)
 
     for data in datas:
-        # 商品連結&ID0
+        # 商品連結&ID
         s_href = data.find('a').get('href')
         splitHref = s_href.split('/')
         s_id = splitHref[len(splitHref)-1]
