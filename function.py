@@ -53,8 +53,17 @@ def FindProduct(df, mode, target_names, budget, locations):
               price <= @budget & \
               location in @locations",
              inplace=True)
+
+    # 將每一項 target 轉為 regex，regex 功能偵測擁有所有關鍵字的項目(關鍵字順序不限)
+    # ->  /(?=.*Apple)(?=.*Bat)(?=.*Car).*/
+    target_regex = []
+    for target in target_names:
+        target_split = target.split()
+        regex = "(?=.*" + ")(?=.*".join(target_split) + ").*"
+        target_regex.append(regex)
+
     # 篩選符合條件：名稱關鍵字
-    df.query("name.str.contains('|'.join(@target_names))", inplace=True)
+    df.query("name.str.contains('|'.join(@target_regex))", inplace=True)
 
     # 返回過濾後的 DF
     return df
